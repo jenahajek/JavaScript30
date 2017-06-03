@@ -132,6 +132,9 @@
 
     // my custom navigation, build with that I learned today
     function navigate(e) {
+        e.preventDefault();
+        console.log("which: " + e.which);
+
         var key = document.querySelector(`.jena-nav[data-key="${e.keyCode}"]`);
 
         if (!key) return;

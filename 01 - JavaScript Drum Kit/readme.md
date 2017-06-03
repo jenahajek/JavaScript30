@@ -90,6 +90,12 @@ function removeTransition(e) {
 - build an array - `const keys = Array.from(document.querySelectorAll('.key'));`
 - `keydown` and `transitionend` event listeners
 - `keyCode`s
+- `esc` key has default behaviour, which needs to be "neutralized" with `e.preventDefault();`. And `e.preventDefault;` is not enough. It took me half an hour till I spot the missing brackets! :D:D:D
+- there is also another (maybe better) option of obtaining the keyCode, that is by `which` method. Via [css-tricks](https://css-tricks.com/snippets/javascript/javascript-keycodes/).
+
+## Extras
+- I've added support for mouse. Just for the sake of training.
+- I've build navigation, which can be controlled by keyboard :)
 
 ## Unsolved issues
 - after pressing and holding a key, the `.playing` class sticks and doesn't go away
