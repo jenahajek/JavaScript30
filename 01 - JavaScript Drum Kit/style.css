@@ -48,3 +48,58 @@ kbd {
   letter-spacing: .1rem;
   color: #ffc600;
 }
+
+.jena-nav__wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.jena-nav {
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.8);
+  text-shadow: 0 0 .5rem black;
+  border-radius: 5px;
+  border: 0;
+  padding: 12px 20px 11px;
+  color: #fff;
+  font-size: 20px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  text-decoration: none;
+}
+
+.jena-nav + .jena-nav {
+  margin-left: 13px;
+}
+
+.jena-nav.is-active,  
+.jena-nav:hover,
+.jena-nav:focus {
+  transform: scale(1.1);
+  cursor: pointer;
+  color: #ffc600;
+  background: rgba(0, 0, 0, 1);
+}
+
+.jena-nav--prev {
+  padding-left: 17px;
+}
+
+.jena-nav--next {
+  padding-right: 17px;
+}
+
+.jena-nav--disabled {
+  opacity: 0.6;
+  transition: none;
+}
+
+.jena-nav--disabled:hover,
+.jena-nav--disabled:focus {
+  transform: none;
+  cursor: no-drop;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+}

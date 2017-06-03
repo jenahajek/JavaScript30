@@ -83,7 +83,10 @@ function removeTransition(e) {
 - `foo.classList.add('bar');` adds class like `$(".foo").addClass("bar");`
 - `foo.classList.remove('bar');`, `foo.classList.toggle('bar');` works, too
 - `window.addEventListener('keydown', playSound);` returns KeyboardEvent
-- `document.querySelector(`.key[data-key="${e.keyCode}"]`)` this syntax of targeting custom data attributes - i don't know why there is problem with quotation marks, though
+- `document.querySelector(`.key[data-key="${e.keyCode}"]`)`
+  - this syntax of targeting custom data attributes
+  - wrap variable in `${...}` if need to call it inside a string
+  - i don't know why there is problem with quotation marks, though
 - build an array - `const keys = Array.from(document.querySelectorAll('.key'));`
 - `keydown` and `transitionend` event listeners
 - `keyCode`s
