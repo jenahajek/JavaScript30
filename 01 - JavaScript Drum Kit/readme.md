@@ -8,7 +8,8 @@ We start off with prepared HTML. Important details are:
 
 ### Markup
 Use of custom `data-key` attribute for keys&hellip;
-``` html
+
+```
 <div class="keys">
   <div data-key="65" class="key">
     <kbd>A</kbd>
@@ -19,20 +20,24 @@ Use of custom `data-key` attribute for keys&hellip;
 ```
 
 &hellip; and for audio, too.
-```html
+
+```
 <audio data-key="65" src="sounds/clap.wav"></audio>
 <audio data-key="83" src="sounds/hihat.wav"></audio>
 ```
 
 ### JavaScript
 #### 1. wait for user input
-```js
+
+```
 window.addEventListener('keydown', playSound);
 ```
+
 If user presses a key, it'll trigger `playSound` function and pass `KeyboardEvent` as a parameter.
 
 Next we want to play sounds associated with given keys.
-```js
+
+```
 function playSound(e) {
   console.log(e); // -> KeyboardEvent {isTrusted: true, key: "s", code: "KeyS", location: 0, ctrlKey: false…}
 
@@ -55,7 +60,7 @@ function playSound(e) {
 
 For styling purposes we added class `.playing`. We also need to put it away after the transition. We can leverage `transitionend` event listener, so we don't have to worry about keeping value in CSS and JS in sync.
 
-``` js
+```
 // build an array of keys
 const keys = Array.from(document.querySelectorAll('.key'));
 
@@ -64,7 +69,8 @@ keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 ```
 
 `transitionend` will fire for every CSS property. We are going to choose only one, generally the longest one. In our case we've chosen `transform`. So this function will ignore all the `transitionend`s except `transform`. When that one finishes, we'll remove the modifier class.
-``` js
+
+```
 function removeTransition(e) {
   if (e.propertyName !== 'transform') return;
   e.target.classList.remove('playing');
