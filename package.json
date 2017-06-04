@@ -1,0 +1,25 @@
+{
+  "name": "js30",
+  "version": "1.0.0",
+  "description": "![](https://javascript30.com/images/JS3-social-share.png)",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jena.hajek",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "browser-sync": "^2.18.12",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-markdown": "^1.2.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-glob": "^1.0.8",
+    "gulp-twig": "^0.7.0",
+    "imagemin-pngquant": "^5.0.1"
+  }
+}
