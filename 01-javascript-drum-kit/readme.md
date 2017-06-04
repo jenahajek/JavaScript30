@@ -1,4 +1,4 @@
-# Day 1 - Drum Kit
+# Practice 1 - Drum Kit
 
 ## Objective
 Build a drum kit that can be control via keyboard.
@@ -27,8 +27,8 @@ Use of custom `data-key` attribute for keys&hellip;
 ```
 
 ### JavaScript
-#### 1. wait for user input
 
+First, wait for user input
 ```
 window.addEventListener('keydown', playSound);
 ```
