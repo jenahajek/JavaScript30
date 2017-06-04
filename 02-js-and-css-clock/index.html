@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+
+  <div class="jena-nav__wrapper">
+      <a href="http://jenahajek.com/javascript30/01-javascript-drum-kit" class="jena-nav jena-nav--prev"><span>&larr;</span> Prev</a>
+      <a data-key="27" class="jena-nav" href="http://jenahajek.com/javascript30/">Back to index <span>(esc)</span></a>
+      <a data-key="13" class="jena-nav" href="https://github.com/jenahajek/javascript30/tree/master/02-js-and-css-clock">Documentation <span>(enter)</span></a>
+      <a data-key="39" href="#" class="jena-nav jena-nav--next jena-nav--disabled">Next <span>&rarr;</span></a>
+  </div>
+
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand minute-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+
+
+  <script>
+    // find clock hands
+    const secondHand = document.querySelector('.second-hand');
+    const minuteHand = document.querySelector('.minute-hand');
+    const hourHand   = document.querySelector('.hour-hand');
+
+    function setDate() {
+
+      // Date constructor:
+      // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date
+      const now = new Date();
+
+      // .getSeconds method returns current second value
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      const hours   = now.getHours();
+
+      // translate time units to degrees
+      // seconds: ((seconds / 60) * 360) - first to percentage, then multiply by degrees, 90 to offset start (so it starts at 12 o'clock)
+      const secondsDegrees = (seconds * 6) + 90;
+      const minutesDegrees = (minutes * 6) + (seconds / 10) + 90;
+      const hoursDegrees   = (hours * 30) + (minutes / 10) + 90;
+
+      // set transform rotate property
+      // `` is ES6 template literal: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+      hourHand.style.transform   = `rotate(${hoursDegrees}deg)`;
+    }
+
+    // repeat every 1000ms
+    setInterval(setDate, 1000);
+
+    setDate();
+
+  </script>
+
+  <script>
+    // my custom navigation, build with that I learned today
+    function navigate(e) {
+        // e.preventDefault(); // this was blocking all keyboard shorcuts!
+        console.log("which: " + e.which);
+
+        var key = document.querySelector(`.jena-nav[data-key="${e.keyCode}"]`);
+
+        if (!key) return;
+        
+        key.classList.add('is-active');
+        key.click();
+    }
+    
+    window.addEventListener('keydown', navigate);
+  </script>
+</body>
+</html>
