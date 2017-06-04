@@ -559,17 +559,24 @@ picture {
 }
 
 .site-footer__text {
-  color: #ff9900;
+  color: #999;
+  font-size: 80%;
 }
 
 .site-footer__text a {
-  font-size: 80%;
   color: #999;
-  padding: 0 4px;
+  padding: 0 2px;
+  margin: 0 2px;
+  border-bottom: 1px dashed #999;
 }
 
 .site-footer__text a:hover, .site-footer__text a:focus {
   color: #222;
+  border-bottom: 0;
+}
+
+.star {
+  color: #ff9900;
 }
 
 /* ---------------------------------------------

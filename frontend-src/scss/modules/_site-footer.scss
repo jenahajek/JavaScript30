@@ -4,17 +4,20 @@
     margin-bottom: 30px;
 }
 
-.site-footer__text {
-    color: #ff9900;
+.site-footer__text {    
+    color: palette(gray);
+    font-size: 80%;
     
     a {
-        font-size: 80%;
         color: palette(gray);
-        padding: 0 4px;
+        padding: 0 2px;
+        margin: 0 2px;
+        border-bottom: 1px dashed palette(gray);
         
         &:hover,
         &:focus {
             color: palette(black);
+            border-bottom: 0;
         }
     }
 }
