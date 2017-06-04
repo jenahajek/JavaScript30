@@ -1,0 +1,26 @@
+{% for block in blocks %}
+    <li class="list__item">
+        <div class="list__item-inner">
+            <p class="list__caption">Practice {{ loop.index }}</p>
+            <a href="http://jenahajek.com/javascript30/{{ block.url }}/index.html">
+                <h2 class="list__heading">{{ block.heading }}</h2>
+            </a>
+    {% if block.texts is not empty %}
+            <ul class="list__description">
+                {% for text in block.texts %}
+                    {% include '_li.twig' with {
+                        'text': text.text
+                    %}
+                {% endfor %}
+            </ul>
+    {% endif %}
+            <div class="list__links">
+                <a class="list__link list__link--primary" href="http://jenahajek.com/javascript30/{{ block.url }}/index.html">Demo</a>
+                <a class="list__link" href="https://github.com/jenahajek/javascript30/tree/master/{{ block.url }}">notes</a>
+            </div>
+        </div>
+        <a class="list__image-link" href="http://jenahajek.com/javascript30/{{ block.url }}/index.html">
+            <img class="list__image" src="img/{{ block.img }}.png" alt="{{ block.heading }}">
+        </a>
+    </li>
+{% endfor %}

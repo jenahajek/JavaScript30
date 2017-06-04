@@ -1,0 +1,36 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="author" content="">
+    <title>{% block pageTitle %}Title{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    {% include "components/_favicons.twig" %}
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    {% include "components/_browser-notice.twig" %}
+
+    {% block content %}{% endblock %}
+    
+
+    <footer class="site-footer">
+        <p class="site-footer__text">
+            <a href="http://wesbos.com/" title="Wes Bos Web" target="_blank" rel="noopener noreferrer">Thanks Wes!</a>
+            
+            &starf;
+            
+            <a href="http://jenahajek.com/" title="Frontend developer jenahajek.com" target="_blank" rel="noopener noreferrer">More from jenahajek.com</a>
+        </p>
+    </footer>
+
+    <script src="https://use.typekit.net/scr6rib.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    {# Javascripts #}
+
+</body>
+</html>

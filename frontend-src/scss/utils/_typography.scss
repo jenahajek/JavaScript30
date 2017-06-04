@@ -1,0 +1,48 @@
+@mixin ff--heading {
+    font-family: 'adelle', 'helvetica', sans-serif;
+}
+
+@mixin ff--body {
+    font-family: 'adelle', 'helvetica', sans-serif;
+}
+
+
+
+
+
+// --------------------------
+// Base typographic styles
+// --------------------------
+
+// Define your base font-size here; most elements will inherit this.
+html,
+body {
+    @include ff--body;
+}
+
+// Common margin-bottom for vertical rhythm.
+h1, h2, h3, h4, h5, h6,
+ul, ol, dl,
+fieldset,
+p,
+table,
+pre,
+.baseline,
+svg text {
+    margin-bottom: 0;
+    margin-top: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
+    line-height: 1.5;
+    font-weight: 100;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @include type-setting(1);
+}
