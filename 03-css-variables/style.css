@@ -1,0 +1,286 @@
+:root {
+    --base: #5bafcc;
+    --spacing: 0px;
+    --blur: 0px;
+    --grayscale: 0;
+}
+
+.container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+body {
+    background: url('concrete.png') repeat;
+    background-size: 200px 200px;
+    color: #222;
+    font-family: 'adelle', 'helvetica neue', sans-serif;
+    font-size: 50px;
+    box-sizing: border-box;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.hl {
+    color: var(--base);
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 48px;
+}
+
+.controls {
+    margin-bottom: 50px;
+    padding: 0 30px;
+    max-width: 490px;
+    align-self: flex-start;
+    margin-top: 10vh;
+}
+
+.controls label {
+    margin-right: 30px;
+    font-size: 24px;
+    text-align: right;
+    width: 30%;
+    max-width: 130px;
+    display: inline-block;
+    font-family: 'adelle-sans', 'helvetica neue', sans-serif;
+    text-transform: uppercase;
+    font-size: 40%;
+    font-weight: 700;
+}
+
+.controls input {
+    width: 70%;
+    max-width: 280px;
+    display: inline-block;
+}
+
+.image__wrapper {
+    text-align: center;
+}
+
+.image {
+    filter: blur(var(--blur)) grayscale(var(--grayscale));
+    /*align-self: center;*/
+    max-height: 80vh;
+    box-shadow: 5px 5px 50px 0 rgba(0,0,0,0.25);
+    margin-bottom: 0;
+    display: block;
+    padding: var(--spacing);
+    background: var(--base);
+}
+
+figcaption {
+    font-size: 16px;
+    padding: 10px 40px 10px;
+    background: white;
+    font-family: 'adelle-sans';
+    display: inline-block;
+    margin: 15px auto 0;
+    font-weight: 400;
+    border-radius: 2px;
+    box-shadow: 2px 2px 7px 0 rgba(0,0,0,0.35);
+    position: relative;
+}
+
+figcaption::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    display: block;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.5);
+    position: absolute;
+    top: 50%;
+    margin-top: -2px;
+    left: 20px;
+}
+
+figcaption::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    display: block;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.5);
+    position: absolute;
+    top: 50%;
+    margin-top: -2px;
+    right: 20px;
+}
+
+
+
+
+
+
+.jena-nav__wrapper {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.jena-nav {
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--base);
+    line-height: 24px;
+}
+
+.jena-nav.is-active,  
+.jena-nav:hover,
+.jena-nav:focus {
+  cursor: pointer;
+  border-bottom: 1px dashed var(--base);
+}
+
+.jena-nav span {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 24px;
+}
+
+.jena-nav--disabled {
+  color: #ccc;
+  transition: none;
+}
+
+.jena-nav--disabled:hover,
+.jena-nav--disabled:focus {
+  transform: none;
+  cursor: no-drop;
+}
+
+
+
+
+/* range input styling */
+
+/* remove defaults */ 
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+
+
+
+
+/* add custom styles for thumb */
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -1px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+/* All the same stuff for Firefox */
+/*input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+ All the same stuff for IE 
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}*/
+
+
+
+
+/* add custom styles for track */
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 22px;
+  cursor: pointer;
+  background: #3071a9;
+  background: linear-gradient(to right, #ddd 0%, var(--base) 100%);
+  border-radius: 11px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: var(--base);
+}
+
+/*input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}*/
+
+/*input[type=range]::-ms-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+}*/
+

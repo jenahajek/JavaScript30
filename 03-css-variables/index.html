@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="controls">
+      <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+      <label for="spacing">Spacing:</label>
+      <input id="spacing" type="range" name="spacing" min="0" max="200" value="0" data-sizing="px">
+
+      <label for="blur">Blur:</label>
+      <input id="blur" type="range" name="blur" min="0" max="25" value="0" data-sizing="px">
+
+      <label for="grayscale">Grayscale:</label>
+      <input id="grayscale" type="range" name="grayscale" min="0" max="1" value="0" step="0.01">
+
+      <label for="base">Base Color</label>
+      <!-- name attribute has to be the same like CSS variable name -->
+      <input id="base" type="color" name="base" value="#5bafcc">
+    </div>
+    
+    <figure class="image__wrapper">
+      <img class="image" src="hong-kong.jpg">
+      <figcaption>Hong Kong</figcaption>
+    </figure>
+  </div>
+
+  <div class="jena-nav__wrapper">
+      <a data-key="37" href="http://jenahajek.com/javascript30/02-js-and-css-clock" class="jena-nav jena-nav--prev"><span>&larr;</span> Prev</a>
+      <a data-key="27" class="jena-nav" href="http://jenahajek.com/javascript30/">Back to index <span>(esc)</span></a>
+      <a data-key="13" class="jena-nav" href="https://github.com/jenahajek/javascript30/tree/master/03-css-variable">Documentation <span>(enter)</span></a>
+      <a data-key="39" href="#" class="jena-nav jena-nav--next jena-nav--disabled">Next <span>&rarr;</span></a>
+  </div>
+
+  <script>
+
+  // make an array with inputs (it's actually a node list)
+  const inputs = document.querySelectorAll("input");
+
+  // function for updating css variable
+  function handleUpdate() {
+    
+    // for some properties we need units, we store them in custom data-attribute
+    // dataset set is an object, which contains all the data attributes from that specific element - it is easier way, how to extract data-attribute :)
+    const suffix = this.dataset.sizing || '';
+
+    // documentElement is <html> tag
+    // add units if needed
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+  }
+
+  // listen for value of each input
+  // because inputs are not an array, but node list, we'll use .forEach method to loop through it
+  inputs.forEach(input => input.addEventListener('change', handleUpdate));
+  inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+  </script>
+
+
+  <script>
+    // my custom navigation
+    function navigate(e) {
+        // e.preventDefault(); // this was blocking all keyboard shorcuts!
+        console.log("which: " + e.which);
+
+        var key = document.querySelector(`.jena-nav[data-key="${e.keyCode}"]`);
+
+        if (!key) return;
+        
+        key.classList.add('is-active');
+        key.click();
+    }
+    
+    window.addEventListener('keydown', navigate);
+  </script>
+
+
+  <script src="https://use.typekit.net/scr6rib.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+</body>
+</html>
