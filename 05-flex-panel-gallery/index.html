@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flex Panels 💪</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="jena-nav__wrapper">
+    <a data-key="37" href="http://jenahajek.com/javascript30/04-array-cardio-day-1" class="jena-nav jena-nav--prev"><span>&larr;</span> Prev</a>
+    <a data-key="27" class="jena-nav" href="http://jenahajek.com/javascript30/">Back to index <span>(esc)</span></a>
+    <a data-key="13" class="jena-nav" href="https://github.com/jenahajek/javascript30/tree/master/05-flex-panel-gallery">Documentation <span>(enter)</span></a>
+    <a data-key="39" href="#" class="jena-nav jena-nav--next jena-nav--disabled">Next <span>&rarr;</span></a>
+</div>
+
+  <div class="panels">
+    <div class="panel panel1">
+      <p>Hey</p>
+      <p>Let's</p>
+      <p>Dance</p>
+    </div>
+    <div class="panel panel2">
+      <p>Give</p>
+      <p>Take</p>
+      <p>Receive</p>
+    </div>
+    <div class="panel panel3">
+      <p>Experience</p>
+      <p>It</p>
+      <p>Today</p>
+    </div>
+    <div class="panel panel4">
+      <p>Give</p>
+      <p>All</p>
+      <p>You can</p>
+    </div>
+    <div class="panel panel5">
+      <p>Life</p>
+      <p>In</p>
+      <p>Motion</p>
+    </div>
+  </div>
+
+  <script>
+
+  const panels = document.querySelectorAll('.panel');
+
+  // we'll get multiple transitions. Without specifying the correct one nothing happens
+  function toggleActive(e) {
+    // check what is being transitioned
+    console.log(e.propertyName);
+
+    // some browsers use flex, some flex-grow
+    // so instead of condition like `if (e.propertyName !== 'flex-grow') return;`
+    // we use .includes method
+    if (e.propertyName.includes('flex')) {
+      this.classList.toggle('open-active');
+    }
+  }
+
+  function toggleOpen() {
+    this.classList.toggle('open');
+  }
+
+
+  // if we specify toggleOpen() it would trigger on page load
+  // without brackets ii is only referencing to the function
+  panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+  panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+
+  </script>
+
+
+
+</body>
+</html>
