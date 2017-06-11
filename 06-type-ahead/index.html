@@ -104,5 +104,24 @@ const suggestions = document.querySelector('.suggestions');
 searchInput.addEventListener('change', displayMatches);
 searchInput.addEventListener('keyup', displayMatches);
 </script>
+
+
+  <script>
+    // my custom navigation
+    function navigate(e) {
+        // e.preventDefault(); // this was blocking all keyboard shorcuts!
+        console.log("which: " + e.which);
+
+        var key = document.querySelector(`.jena-nav[data-key="${e.keyCode}"]`);
+
+        if (!key) return;
+        
+        key.classList.add('is-active');
+        key.click();
+    }
+    
+    window.addEventListener('keydown', navigate);
+  </script>
+
   </body>
 </html>
