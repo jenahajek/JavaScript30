@@ -1,50 +1,56 @@
-# Practice 4 - Array Cardio, day 1
+# Practice 6 - Type ahead
 
 ## Objective
-Get hands on few array methods, play with it and learn something new.
+Build a search input with suggestion list
 
 ## Procedure
 
 ### Markup
-No markup this time, with one exception, where we use wikipedia code.
+Search field with unordered list for suggestions.
+``` html
+<form class="search-form">
+  <input type="text" class="search" placeholder="City or State">
+  <ul class="suggestions">
+    <li>Filter for a city</li>
+    <li>or a state</li>
+  </ul>
+</form>
+```
 
 ### CSS
-Nothing.
+Basic styling.
 
 ### JavaScript
-Documented in the source code.
+Firstly we need to tackle the functionality.
+1. take the source data and transform them to an array, so it is possible to work with them.
+2. build a function for filtering that array with `.filter()`, `.match()` and regular expressions.
+3. make a function for displaying results. 
+4. add events linteners
 
 #### Important syntaxes
-- convert node list to an array (exercise 6)
+- turn array into one string with join()
 ``` js
-const links = Array.from(category.querySelectorAll('a')); // 2
+const html = matchArray.map(place => {
+  return ...;
+}).join('');
 ```
 
-- restructure the split result, put it into variables right away (exercise 7)
+- return html code, that can be inserted into markup
 ``` js
-const [aLast, aFirst] = lastOne.split(', '); // 4
-```
+return `
+  <li>
+    <span class="name">${cityName}, ${stateName}</span>
+    <span class="population">${numberWithCommas(place.population)}</span>
+  </li>
+`;
 
-- reduce function (exercise 8)
-``` js
-const transportation = data.reduce(function(obj, item) { // 1
-  // console.log(obj);
-  // console.log(obj[item]);
-  if (!obj[item]) { // 3
-    obj[item] = 0;
-  }
-  obj[item]++; // 4
-  return obj;
-}, {}); // 2
+suggestions.innerHTML = foo;
 ```
 
 ## TIL
-- [arrow function](https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/)
-- [filter()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/filter?v=control)
-- [map()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/map?v=control)
-- [sort()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/sort?v=control)
-- [reduce()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce?v=control)
-- [split()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split)
+- [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+- [match](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match)
+- [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
 
 ## Extras
 - nothing today
