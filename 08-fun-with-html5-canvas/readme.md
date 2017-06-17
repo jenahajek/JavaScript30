@@ -1,7 +1,7 @@
 # Practice 8 - Fun with HTML5 Canvas
 
 ## Objective
-
+Build a canvas for drawing.
 
 ## Procedure
 
