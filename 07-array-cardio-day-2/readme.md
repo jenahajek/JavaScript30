@@ -15,27 +15,26 @@ Nothing.
 Documented in the source code.
 
 #### Important syntaxes
-- convert node list to an array (exercise 6)
+- console.log log option
 ``` js
-const links = Array.from(category.querySelectorAll('a')); // 2
+// 2 - show object which is true
+// 3 - shorter syntax
+console.log(isAdult); // 1
+console.log({isAdult}); // 2
 ```
 
-- restructure the split result, put it into variables right away (exercise 7)
+- common syntax
 ``` js
-const [aLast, aFirst] = lastOne.split(', '); // 4
-```
-
-- reduce function (exercise 8)
-``` js
-const transportation = data.reduce(function(obj, item) { // 1
-  // console.log(obj);
-  // console.log(obj[item]);
-  if (!obj[item]) { // 3
-    obj[item] = 0;
+const comment = comments.find(function(comment) {
+  if (comment.id === 823423) {
+    return true;
   }
-  obj[item]++; // 4
-  return obj;
-}, {}); // 2
+});
+```
+
+- arrow function with explicit return
+``` js
+const comment2 = comments.find(comment => comment.id === 823423);
 ```
 
 ## TIL
