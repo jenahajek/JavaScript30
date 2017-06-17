@@ -64,8 +64,31 @@
 }
 
 .list__description {
-    list-style-type: disc;
-    padding-left: 20px;
+    font-size: 0.8rem;
+    list-style-type: none;
+    padding-left: 0;
+    
+    li {
+        position: relative;
+        padding-left: 20px;
+        
+        &::before {
+            content: '';
+            background: palette(gray, mid);
+            width: 8px;
+            height: 8px;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -4px;
+            border-radius: 50%;
+        }
+    }
+
+    @include respond-to(medium) {
+        padding-bottom: ($spacing * 2);
+    }
 }
 
 .list__links {

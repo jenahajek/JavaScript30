@@ -499,8 +499,33 @@ picture {
 }
 
 .list__description {
-  list-style-type: disc;
+  font-size: 0.8rem;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.list__description li {
+  position: relative;
   padding-left: 20px;
+}
+
+.list__description li::before {
+  content: '';
+  background: #e0e0e0;
+  width: 8px;
+  height: 8px;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -4px;
+  border-radius: 50%;
+}
+
+@media (min-width: 1120px) {
+  .list__description {
+    padding-bottom: 60px;
+  }
 }
 
 .list__links {
