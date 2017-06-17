@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="canvas-wrapper">
+    <canvas id="draw" width="800" height="800"></canvas>
+</div>
+<div class="controls">
+    <div class="control-item">
+        <label for="stroke-width">Stroke width</label>
+        <input class="control-input" id="stroke-width" type="range" min="1" max="200" value="30">
+        <div class="currentValue">30</div>
+    </div>
+
+    <div class="control-item">
+        <label for="stroke-jitter">Stroke jitter</label>
+        <input class="control-input" id="stroke-jitter" type="range" min="0" max="80" value="0">
+        <div class="currentValue">0</div>
+    </div>
+
+    <div class="control-item">
+        <label for="hue-jitter">Hue jitter</label>
+        <input class="control-input" id="hue-jitter" type="range" min="0" max="360" value="0">
+        <div class="currentValue">0</div>
+    </div>
+
+    <div class="control-item">
+        <label for="color">Color</label>
+        <input class="control-input" id="color" type="color" value="#bada55">
+        <div class="currentValue">#bada55</div>
+    </div>
+
+    <div class="control-item">
+        <label for="background">Background</label>
+        <input class="control-input" id="background" type="color" value="#ffffff">
+        <div class="currentValue">#ffffff</div>
+    </div>
+
+    <div class="control-item">
+        <label for="reset">Reset</label>
+        <input type="button" value="Nuke it" id="reset">
+    </div>
+</div>
+
+  <div class="jena-nav__wrapper">
+      <a data-key="37" href="http://jenahajek.com/javascript30/07-array-cardio-day-2" class="jena-nav jena-nav--prev"><span>&larr;</span> Prev</a>
+      <a data-key="27" class="jena-nav" href="http://jenahajek.com/javascript30/">Back to index <span>(esc)</span></a>
+      <a data-key="13" class="jena-nav" href="https://github.com/jenahajek/javascript30/tree/master/08-fun-with-html5-canvas">Documentation <span>(enter)</span></a>
+      <a data-key="39" href="#" class="jena-nav jena-nav--next jena-nav--disabled">Next <span>&rarr;</span></a>
+  </div>
+
+<script>
+    // CANVAS
+    //
+    // 1 - set basics
+    // 2 - flag for distinguish when we just move cursor and when we draw
+    // 3 - start and end point of a line
+    // 4 - if mouse is not pressed, don't draw
+    // 5 - event listeners
+    //  5.1 - turn drawing off when out of window
+    // 6 - way how to write variables on one line in ES6 (destructuring an array)
+    //     lastX = e.offsetX;
+    //     lastY = e.offsetY;
+    // 7 - update starting position
+    // 8 - draw
+    // 9 - additional improvements
+    //
+    const canvas = document.querySelector("#draw"); // 1
+    const canvasWrapper = document.querySelector(".canvas-wrapper"); // 1
+    const ctx           = canvas.getContext("2d"); // 1
+
+    canvas.width        = canvasWrapper.scrollWidth; // 1
+    canvas.height       = canvasWrapper.scrollHeight; // 1
+    ctx.strokeStyle     = '#BADA55'; // 1
+    ctx.lineJoin        = 'round'; // 1
+    ctx.lineCap         = 'round'; // 1
+    ctx.lineWidth       = 30; // 1
+
+    let isDrawing       = false; // 2
+    let lastX           = 0; // 3
+    let lastY           = 0; // 3
+    let hue             = 0; // 9
+    let direction       = true; // 9
+
+    let strokeJitter    = 0;
+    let strokeJitterMax = 0;
+    let strokeJitterMin = 0;
+
+    let hueJitter       = 0;
+    let hueJitterMax    = 0;
+    let hueJitterMin    = 0;
+
+    function draw(e) {
+        if (!isDrawing) return; // 4
+
+        ctx.beginPath(); // 8
+        // start from
+        ctx.moveTo(lastX, lastY); // 8
+        // go to
+        ctx.lineTo(e.offsetX, e.offsetY); // 8
+        ctx.stroke(); // 8
+        [lastX, lastY] = [e.offsetX, e.offsetY]; // 8
+
+        if (hueJitter > 0) {
+            ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`; // 9
+            
+            if (hue >= hueJitterMax || hue <= hueJitterMin) {
+                direction = !direction;
+            }
+
+            if(direction) {
+                hue++;
+            } else {
+                hue--;
+            }
+        }
+
+        if (strokeJitter > 0) {
+            if (ctx.lineWidth >= strokeJitterMax || ctx.lineWidth <= strokeJitterMin || ctx.lineWidth === 1) {
+                direction = !direction;
+            }
+
+            if (direction) { // 9
+                ctx.lineWidth++;
+            } else {
+                ctx.lineWidth--;
+            }
+        }
+    }
+
+    canvas.addEventListener('mousedown', (e) => { // 5
+      isDrawing = true;
+      [lastX, lastY] = [e.offsetX, e.offsetY]; // 6 + 7
+    });
+    canvas.addEventListener('mousemove', draw); // 5
+    canvas.addEventListener('mouseup', () => isDrawing = false); // 5
+    canvas.addEventListener('mouseout', () => isDrawing = false); // 5.1
+
+
+
+
+
+    // Extras
+    const inputs            = document.querySelectorAll('.controls .control-input');
+
+    const strokeInput       = document.querySelector('#stroke-width');
+    const strokeJitterInput = document.querySelector('#stroke-jitter');
+    const hueJitterInput    = document.querySelector('#hue-jitter');
+    const colorInput        = document.querySelector('#color');
+    const backgroundInput   = document.querySelector('#background');
+    
+    const resetInput        = document.querySelector('#reset');
+
+    function update() {
+        this.nextElementSibling.innerText = this.value;
+        // update canvas
+        ctx.lineWidth           = strokeInput.value;
+        strokeJitter            = parseInt(strokeJitterInput.value);
+        hueJitter               = parseInt(hueJitterInput.value);
+        ctx.strokeStyle         = colorInput.value;
+        canvas.style.background = backgroundInput.value;
+
+        strokeJitterMax         = parseInt(ctx.lineWidth + strokeJitter); // if jitter is on, set boudaries
+        strokeJitterMin         = parseInt(ctx.lineWidth - strokeJitter); // if jitter is on, set boudaries
+
+        hueJitterMax            = parseInt(hue + hueJitter); // if jitter is on, set boudaries
+        hueJitterMin            = parseInt(hue - hueJitter); // if jitter is on, set boudaries
+    }
+
+    function reset() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // eventListeners
+    inputs.forEach(input => input.addEventListener('change', update));
+    inputs.forEach(input => input.addEventListener('mousemove', update));
+    resetInput.addEventListener('click', reset);
+</script>
+
+
+
+
+
+  <script>
+    // my custom navigation
+    function navigate(e) {
+        // e.preventDefault(); // this was blocking all keyboard shorcuts!
+        console.log("which: " + e.which);
+
+        var key = document.querySelector(`.jena-nav[data-key="${e.keyCode}"]`);
+
+        if (!key) return;
+        
+        key.classList.add('is-active');
+        key.click();
+    }
+    
+    window.addEventListener('keydown', navigate);
+  </script>
+
+</body>
+</html>
